@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config xmlns="http://v8.1c.ru/v8/tech-log">
+	<log history="72" location="/var/log/1C">
+		<property name="all"/>
+		<event>
+			<eq property="name" value="ADMIN"/>
+		</event>
+		<event>
+			<eq property="name" value="PROC"/>
+		</event>
+		<event>
+			<eq property="name" value="LEAKS"/>
+		</event>
+		<event>
+			<eq property="name" value="MEM"/>
+		</event>
+		<event>
+			<eq property="name" value="ATTN"/>
+		</event>
+		<event>
+			<eq property="name" value="QERR"/>
+		</event>
+		<event>
+			<eq property="Name" value="TDEADLOCK"/>
+		</event>
+		<event>
+			<eq property="name" value="TTIMEOUT"/>
+			<gt property="duration" value="50000"/>
+		</event>
+		<event>
+			<eq property="name" value="SDBL"/>
+			<gt property="duration" value="50000"/>
+		</event>
+		<event>
+			<eq property="name" value="SDBL"/>
+			<eq property="func" value="setrollbackonly"/>
+		</event>
+		<event>
+			<eq property="name" value="DBMSSQL"/>
+			<gt property="duration" value="50000"/>
+		</event>
+		<event>
+			<eq property="name" value="CALL"/>
+			<gt property="memorypeak" value="100000000"/>
+		</event>
+		<event>
+			<eq property="name" value="TLOCK"/>
+			<gt property="duration" value="50000"/>
+		</event>
+		<event>
+			<eq property="Name" value="EXCP"/>
+		</event>
+		<event>
+			<eq property="Name" value="EXCPCNTX"/>
+		</event>
+	</log>
+	<dump create="true" type="3" location="/var/log/1C/Dumps" externaldump="1" prntscrn="false"/>
+	<dbmslocks/>
+</config>
