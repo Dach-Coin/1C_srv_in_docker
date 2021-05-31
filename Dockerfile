@@ -1,10 +1,5 @@
+# vim:set ft=dockerfile:
 FROM ubuntu:latest
-
-# Env section
-ENV GOSU_VERSION 1.12
-ENV LANG ru_RU.utf8
-ENV ENTERPRISE_VER 8.3.18.1289
-ENV SERV_VER 8.3.18-1289
 
 # add ubuntu repositories
 RUN echo "deb http://ru.archive.ubuntu.com/ubuntu/ bionic main universe" >> /etc/apt/sources.list
@@ -12,6 +7,14 @@ RUN echo "deb http://ru.archive.ubuntu.com/ubuntu/ bionic main universe" >> /etc
 # make the "ru_RU.UTF-8" locale so 1c-enterprise will be utf-8 enabled by default
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
   && localedef -i ru_RU -c -f UTF-8 -A /usr/share/locale/locale.alias ru_RU.UTF-8
+
+# Env section
+ENV GOSU_VERSION 1.12
+ENV LANG ru_RU.utf8
+ENV LANGUAGE ru_RU.utf8
+ENV LC_ALL ru_RU.utf8
+ENV ENTERPRISE_VER 8.3.18.1289
+ENV SERV_VER 8.3.18-1289
 
 # grab gosu for easy step-down from root
 RUN apt-get -qq update \
@@ -42,6 +45,8 @@ RUN dpkg --install /tmp/1c-enterprise-${ENTERPRISE_VER}-common_${SERV_VER}_amd64
 
 COPY ./docker-entrypoint.sh /
 COPY ./logcfg.xml /home/usr1cv8/.1cv8/1C/1cv8/conf
+
+RUN chmod +x /docker-entrypoint.sh
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
