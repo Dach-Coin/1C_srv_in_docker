@@ -53,6 +53,6 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 VOLUME /home/usr1cv8
 VOLUME /var/log/1C
 
-EXPOSE 2540-2541 2560-2591 2550
+EXPOSE 1540-1541 1560-1591 1550
 
 CMD ["ragent"]
