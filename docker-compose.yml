@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 services:
     srv1cv83:
         image: server1c-8.3.18.1289:latest
